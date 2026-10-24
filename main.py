@@ -5,7 +5,7 @@ import pandas as pd
 st.set_page_config(page_title="Chama Manager", page_icon="💰", layout="wide")
 
 st.title("💰 Chama Manager")
-st.subheader("Ruiru Chamas | Members & Contributions")
+st.subheader(" Chamas | Members & Contributions")
 
 # --- SIDEBAR ---
 st.sidebar.header("Add New Member")

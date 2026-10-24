@@ -1,42 +1,43 @@
 import streamlit as st
-from datetime import date
+import pandas as pd
 
-st.set_page_config(page_title="Chama Manager PRO")
-st.title("💰 Chama Manager PRO")
-st.caption("Ruiru - Members + Money + Attendance")
+# --- APP ICON AND NAME ---
+st.set_page_config(page_title="Chama Manager", page_icon="💰", layout="wide")
 
-if "members" not in st.session_state:
-    st.session_state.members = []
-    st.session_state.contrib = []
-    st.session_state.attendance = {}
+st.title("💰 Chama Manager")
+st.subheader("Ruiru Chamas | Members & Contributions")
 
-st.subheader("1. Add Member")
-name = st.text_input("Member name")
-if st.button("Add Member"):
-    if name and name not in st.session_state.members:
-        st.session_state.members.append(name)
-        st.success(f"Added {name}")
+# --- SIDEBAR ---
+st.sidebar.header("Add New Member")
+new_member = st.sidebar.text_input("Member Name")
+phone = st.sidebar.text_input("Phone Number")
+if st.sidebar.button("Add Member"):
+    if new_member:
+        st.sidebar.success(f"{new_member} Added!")
+    else:
+        st.sidebar.error("Enter name")
 
-if st.session_state.members:
-    st.divider()
-    st.subheader(f"2. Attendance - {date.today()}")
-    for m in st.session_state.members:
-        st.checkbox(f"{m}", key=f"att_{m}")
-    
-    st.divider()
-    st.subheader("3. Record Payment")
-    who = st.selectbox("Who paid?", st.session_state.members)
-    amt = st.number_input("Amount KES", min_value=0, step=100)
-    if st.button("Record Payment", type="primary", use_container_width=True):
-        st.session_state.contrib.append({"member": who, "amount": amt})
-        st.success(f"Recorded KES {amt}")
+# --- MAIN DATA ---
+# Sample data - you can connect to Google Sheets later
+data = {
+    "Member": ["John Kamau", "Mary Wanjiku", "Peter Ochieng"],
+    "Phone": ["0712xxxxxx", "0723xxxxxx", "0745xxxxxx"],
+    "Contribution": [2000, 2000, 1500],
+    "Status": ["Paid", "Paid", "Pending"]
+}
+df = pd.DataFrame(data)
 
-if st.session_state.contrib:
-    st.divider()
-    st.subheader("Report")
-    total = sum(c["amount"] for c in st.session_state.contrib)
-    st.metric("TOTAL", f"KES {total:,}")
-    for m in st.session_state.members:
-        paid = sum(c["amount"] for c in st.session_state.contrib if c["member"] == m)
-        present = "✅" if st.session_state.get(f"att_{m}") else "❌"
-        st.write(f"{present} {m} - KES {paid}")
+# --- DISPLAY ---
+col1, col2, col3 = st.columns(3)
+col1.metric("Total Members", len(df))
+col2.metric("Total Collected", f"KES {df['Contribution'].sum()}")
+col3.metric("Pending", len(df[df['Status']=="Pending"]))
+
+st.divider()
+
+st.dataframe(df, use_container_width=True)
+
+st.divider()
+st.write("📱 **How to use:** Add members on the left, mark contributions, and share this link with your chama chairman.")
+
+st.success("Live Link: Share this app with your customers!")

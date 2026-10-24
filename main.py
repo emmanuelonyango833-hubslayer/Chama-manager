@@ -14,7 +14,7 @@ st.sidebar.divider()
 st.sidebar.header("💵 Lipa Na M-Pesa")
 st.sidebar.write("**Till / Number:**")
 st.sidebar.code("0142929374", language="text")
-st.sidebar.write("**Setup Fee: KES 3,000**")
+st.sidebar.write("**Setup Fee: KES 2,000**")
 st.sidebar.write("Pay to activate your Chama")
 st.sidebar.divider()
 st.sidebar.write("📞 Need Help? WhatsApp: 0142929374")
@@ -23,7 +23,7 @@ st.sidebar.write("📍 Ruiru | Kahawa | Githurai")
 # --- MAIN APP ---
 st.title("💰 Chama Manager")
 st.markdown("**Ruiru's #1 Chama & Church Contribution System**")
-st.success("✅ Free Demo - Pay KES 3,000 to get your own Chama setup!")
+st.success("✅ Free Demo - Pay KES 2,000 to get your own Chama setup!")
 
 tab1, tab2, tab3 = st.tabs(["📋 Members Demo", "💵 M-Pesa Payments", "🔑 Activate Your Chama"])
 
@@ -57,7 +57,7 @@ with tab2:
     st.write(f"Date: {datetime.now().strftime('%d-%m-%Y')}")
 
 with tab3:
-    st.header("🔑 Get Your Own Chama System - KES 3,000")
+    st.header("🔑 Get Your Own Chama System - KES 2,000")
     st.write("Fill this after paying to 0142929374")
     
     mpesa_code = st.text_input("Your M-Pesa Payment Code (from 0142929374 payment)")
@@ -77,7 +77,7 @@ with tab3:
 
     st.divider()
     st.markdown("""
-    ### What you get for KES 3,000:
+    ### What you get for KES 2,000:
     - ✅ Your own Chama Link (e.g. chama-manager-yourname)
     - ✅ All members added
     - ✅ M-Pesa automatic tracking

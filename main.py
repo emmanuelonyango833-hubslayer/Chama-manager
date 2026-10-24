@@ -83,4 +83,4 @@ with tab3:
     - ✅ M-Pesa automatic tracking
     - ✅ Monthly PDF reports
     - ✅ Free support
-    """)v
+    """)
